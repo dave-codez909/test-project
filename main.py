@@ -45,7 +45,7 @@ async def start_test(course_name: str):
         if not results:
             raise HTTPException(status_code=404, detail="No questions found for the given course.")
         
-        # Returning questions with their structured data
+        # Return questions without the 'correct_option' field
         return {"questions": [
             {
                 "id": q.id,
@@ -54,11 +54,11 @@ async def start_test(course_name: str):
                 "option_a": q.option_a,
                 "option_b": q.option_b,
                 "option_c": q.option_c,
-                "option_d": q.option_d,
-                "correct_option": q.correct_option
+                "option_d": q.option_d
             }
             for q in results
         ]}
+
 
 @app.post("/submit-answers")
 async def submit_answers(answers: list[UserAnswer]):
