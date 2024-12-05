@@ -5,7 +5,7 @@ from sqlalchemy import func
 from model import Question, Test, UserAnswer
 from database import get_session, init_db, engine
 
-app = FastAPI()
+app = FastAPI(title="An online test system for programmers")
 
 # Initialize the database on startup
 @app.on_event("startup")
